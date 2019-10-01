@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Project List";
+}
+
+<h2>Project List</h2>
+
+<table id="userProjects">
+    <thead>
+        <tr>
+            <th>Project ID</th>
+            <th>Start Date</th>
+            <th>Time to Start</th>
+            <th>End Date</th>
+            <th>Credits</th>
+            <th>Status</th>
+
+        </tr>
+    </thead>
+</table>
+
+<link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+@section scripts{
+       <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#userProjects").DataTable({
+                "ajax": {
+                    "url": "/General/GetList",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "ProjectId" },
+                    { "data": "StartDate" },
+                    { "data": "TimeToStart" },
+                    { "data": "EndDate" },
+                    { "data": "Credits" },
+                    { "data": "Status" }
+
+                ]
+            });
+        });
+    </script>
+}
